@@ -111,3 +111,8 @@ memory. The server is designed for local use with small text inputs.
 ## License
 
 This project is released under the [MIT License](LICENSE).
+
+## Contributors
+
+- [Kush Aggarwal](https://github.com/kushagarwal2910-lang)
+- [Driti Gudla](https://github.com/DritiG)
