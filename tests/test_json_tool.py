@@ -1,4 +1,5 @@
 import pytest
+
 from mcp_tools_lab.tools.json_tool import process_json
 
 
@@ -22,3 +23,21 @@ def test_scalar_and_container_validation(text):
 def test_unknown_action():
     with pytest.raises(ValueError, match="action"):
         process_json("{}", "unknown")
+
+
+def test_format_default_indent():
+    result = process_json('{"a": {"b": 1}}')
+    assert result["valid"] is True
+    assert result["output"] == '{\n  "a": {\n    "b": 1\n  }\n}'
+
+
+def test_format_with_four_space_indent():
+    result = process_json('{"a": {"b": 1}}', indent=4)
+    assert result["valid"] is True
+    assert result["output"] == '{\n    "a": {\n        "b": 1\n    }\n}'
+
+
+@pytest.mark.parametrize("action", ["validate", "format", "minify"])
+def test_unsupported_indent(action):
+    with pytest.raises(ValueError, match="indent must be 2 or 4"):
+        process_json("{}", action=action, indent=3)

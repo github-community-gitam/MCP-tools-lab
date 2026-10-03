@@ -13,16 +13,25 @@ with ties ordered by first appearance. Lines follow `str.splitlines()`:
 empty input has zero lines and a final newline does not add an extra line.
 Sentence counting is a simple split on `.`, `!`, and `?`, not language-aware analysis.
 
-## process_json(text, action="format", sort_keys=False)
+## process_json(text, action="format", sort_keys=False, indent=2)
 
-Actions are `validate`, `format`, and `minify`. Formatting uses two spaces.
+Actions are `validate`, `format`, and `minify`. Formatting uses two spaces by
+default. The optional `indent` parameter accepts `2` or `4` and controls the
+indentation used when `action="format"`.
+
+For example, `process_json('{"a": {"b": 1}}', action="format", indent=4)` returns
+formatted JSON using four spaces for each indentation level. Calls without
+`indent` continue to use two spaces.
+
 `process_json('{"a": 1}', action="minify")` returns
 `{"valid": True, "output": '{"a":1}'}`. Validation returns only `valid` on success.
 Malformed input returns `{"valid": False, "error": "..."}`.
+
 JSON scalars such as `null` are supported. Duplicate object keys follow Python's
 JSON behavior: the last value wins. Numbers use Python integers and floats;
 float precision is not preserved exactly and overflowing floats are rejected.
 NaN and Infinity are rejected. An unknown action raises `ValueError`.
+An `indent` value other than `2` or `4` raises `ValueError`.
 
 ## inspect_csv(text)
 
