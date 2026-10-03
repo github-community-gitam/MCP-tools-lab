@@ -3,6 +3,25 @@
 Welcome! Your first contribution can be a small Python change. You do not need
 experience with MCP, AI, or every tool in this repository.
 
+## Understand the repository
+
+MCP Tools Lab is a community hackathon project with seven local developer tools
+exposed through one Python MCP server. The tools analyze text, process JSON,
+inspect CSV, generate hashes, compare text, convert timestamps, and parse URLs.
+They require no API keys or AI models and make no network requests.
+
+Read [README.md](README.md) for installation and usage, and
+[docs/tool-guide.md](docs/tool-guide.md) for each tool's behavior.
+
+```text
+src/mcp_tools_lab/server.py  # Registers all seven functions with MCP
+src/mcp_tools_lab/tools/     # Independent Python functions you can edit
+tests/                      # Tool tests and an MCP round-trip test
+examples/try_tools.py       # Try every tool without an MCP client
+docs/tool-guide.md          # Input/output documentation to keep up to date
+docs/issues/                # Six starter task briefs
+```
+
 ## 1. Pick one task
 
 Read the [six starter tasks](docs/issues/README.md) or the
@@ -13,6 +32,18 @@ Wait for a maintainer to confirm if the issue is already claimed.
 
 The empty-line counter and uppercase hash option are good starting points.
 CSV previews and millisecond conversion offer a slightly bigger challenge.
+
+Six optional enhancements are left for contributors:
+
+- [Count empty lines in Text Analyzer](docs/issues/01-empty-lines.md).
+- [Choose 2-space or 4-space JSON indentation](docs/issues/02-json-indentation.md).
+- [Add an uppercase hash option](docs/issues/03-uppercase-hashes.md).
+- [Preview the first few CSV data rows](docs/issues/04-csv-preview.md).
+- [Count unchanged lines in Text Comparison](docs/issues/05-unchanged-lines.md).
+- [Support Unix milliseconds in Timestamp Converter](docs/issues/06-milliseconds.md).
+
+All seven tools already work without these enhancements. Each issue brief includes
+examples, the exact function to edit, acceptance criteria, and a focused test command.
 
 ## 2. Fork and clone
 
@@ -35,6 +66,8 @@ python -m pytest -q
 ```
 
 Run the tests before editing so you know the initial setup works.
+The editable installation (`-e`) means changes under `src/` take effect immediately.
+You can also run `python examples/try_tools.py` to see every tool in action.
 
 ## 3. Make a small change
 

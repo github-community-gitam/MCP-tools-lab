@@ -1,9 +1,10 @@
 # MCP Tools Lab
 
-**Seven useful tools. One MCP server. Your first open-source contribution.**
+**Seven local developer tools. One Python MCP server.**
 
-MCP Tools Lab is a Python project built for a community hackathon. Format JSON,
-inspect CSV, compare text, and more using small functions you can read and improve.
+MCP Tools Lab brings everyday text and data utilities into a single MCP server.
+Format JSON, inspect CSV, compare text, generate hashes, convert timestamps,
+and inspect URLs from an MCP client or directly from Python.
 Every tool runs locally: no API keys, AI models, paid services, or outbound requests.
 Internet access is needed only to download dependencies during setup.
 
@@ -48,12 +49,9 @@ in the following commands; changing your execution policy is unnecessary.
 On systems where the command is `python3`, use that to create the environment.
 
 ```sh
-python -m pip install -e ".[dev]"
+python -m pip install .
 python examples/try_tools.py
-python -m pytest -q
 ```
-
-The editable installation means changes under `src/` take effect immediately.
 
 ## Connect an MCP client
 
@@ -94,26 +92,6 @@ print(convert_timestamp("0"))
 See [examples/try_tools.py](examples/try_tools.py) for all seven functions and
 [docs/tool-guide.md](docs/tool-guide.md) for inputs, results, and edge cases.
 
-## Make your first contribution
-
-Start with **[contributions.md](contributions.md)**. You only need basic Python
-for most tasks; you do not need to know how MCP works.
-
-Six optional improvements are intentionally left for contributors:
-
-- Count empty lines in Text Analyzer.
-- Choose 2-space or 4-space JSON indentation.
-- Add an uppercase hash option.
-- Preview the first few CSV data rows.
-- Count unchanged lines in Text Comparison.
-- Support Unix milliseconds in Timestamp Converter.
-
-The current tools are complete without these enhancements. Each task has a focused
-issue brief in [docs/issues](docs/issues/README.md), with examples, relevant files,
-acceptance criteria, and a test command. Check the repository's
-[open issues](https://github.com/github-community-gitam/MCP-tools-lab/issues)
-before starting to avoid duplicating someone else's work.
-
 ## Project layout
 
 ```text
@@ -123,18 +101,13 @@ src/mcp_tools_lab/
 tests/                  # Tool tests and a real MCP round-trip test
 examples/try_tools.py   # Run all tools without a model or MCP client
 docs/tool-guide.md      # Input/output behavior
-docs/issues/            # Six contributor task descriptions
-contributions.md        # Setup-to-pull-request walkthrough
 ```
 
 All application, example, and test code is Python. TOML and Markdown provide
 packaging configuration and documentation; no JavaScript or frontend is required.
 Tools accept supplied strings, do not read arbitrary files, and process inputs in
-memory. This is a local learning project, not a public network service for large
-or untrusted workloads.
+memory. The server is designed for local use with small text inputs.
 
-## Community and license
+## License
 
-Questions and small improvements are welcome. Follow our
-[Code of Conduct](CODE_OF_CONDUCT.md). This project is released under the
-[MIT License](LICENSE).
+This project is released under the [MIT License](LICENSE).
