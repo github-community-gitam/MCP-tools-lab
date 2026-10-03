@@ -51,12 +51,18 @@ counts as both removed and added lines. Identical inputs return an empty diff.
 Comparison ignores CRLF versus LF and the presence of a final newline;
 other whitespace is significant. Empty input is supported.
 
-## convert_timestamp(value, direction="to_iso")
+## convert_timestamp(value, direction="to_iso", unit="seconds")
 
 `value` is a string. `to_iso` accepts Unix **seconds**, including fractions and
 negative values. `to_unix` accepts an ISO 8601 date/time with `Z` or a UTC offset.
 Both return `unix_seconds` and `iso_utc`. For example,
 `convert_timestamp("1970-01-01T05:30:00+05:30", "to_unix")` returns zero seconds.
+Set `unit="milliseconds"` to read a Unix value in milliseconds or include
+`unix_milliseconds` when converting an ISO date. For example,
+`convert_timestamp("1000", unit="milliseconds")` returns one Unix second, and
+`convert_timestamp("1970-01-01T00:00:01Z", "to_unix", unit="milliseconds")`
+returns 1000 Unix milliseconds. The default remains seconds; the converter does not
+guess a unit from the size of a number.
 Timezone-less dates are rejected so results do not depend on the machine's timezone.
 Python datetime's year range (1–9999) and microsecond precision apply; finer fractional
 seconds may be rounded. Invalid, infinite, or out-of-range values raise `ValueError`.
