@@ -44,12 +44,14 @@ hexadecimal `digest`. Text is encoded as UTF-8. Empty strings are supported.
 These hashes compare content; this tool does not provide password storage.
 Unknown algorithms raise `ValueError`.
 
-## compare_text(before, after)
+**## compare_text(before, after)**
 
-Returns `added_lines`, `removed_lines`, and a unified `diff` string. A replacement
-counts as both removed and added lines. Identical inputs return an empty diff.
-Comparison ignores CRLF versus LF and the presence of a final newline;
-other whitespace is significant. Empty input is supported.
+Returns `added_lines`, `removed_lines`, `unchanged_lines`, and a unified `diff`
+string. A replacement counts as both removed and added lines. `unchanged_lines`
+counts lines that are unchanged between the two inputs. Identical inputs count
+all lines as unchanged and return an empty diff. Comparison ignores CRLF versus
+LF and the presence of a final newline; other whitespace is significant. Empty
+input is supported.
 
 ## convert_timestamp(value, direction="to_iso")
 
