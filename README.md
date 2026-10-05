@@ -114,5 +114,5 @@ This project is released under the [MIT License](LICENSE).
 
 ## Contributors
 
-- [Kush Aggarwal](https://github.com/kushagarwal2910-lang)
+- [Kush Agarwal](https://github.com/kushagarwal2910-lang)
 - [Driti Gudla](https://github.com/DritiG)
