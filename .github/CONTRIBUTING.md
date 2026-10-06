@@ -19,12 +19,12 @@ src/mcp_tools_lab/tools/     # Independent Python functions you can edit
 tests/                      # Tool tests and an MCP round-trip test
 examples/try_tools.py       # Try every tool without an MCP client
 docs/tool-guide.md          # Input/output documentation to keep up to date
-docs/issues/                # Six starter task briefs
+docs/issues/                # Twelve starter task briefs
 ```
 
 ## 1. Pick one task
 
-Read the [six starter tasks](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/README.md) or the
+Read the [twelve starter tasks](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/README.md) or the
 [open GitHub issues](https://github.com/github-community-gitam/MCP-tools-lab/issues).
 Choose one issue, check whether someone is already working on it, and comment
 that you would like to try it. Ask questions when a requirement is unclear.
@@ -33,7 +33,7 @@ Wait for a maintainer to confirm if the issue is already claimed.
 The empty-line counter and uppercase hash option are good starting points.
 CSV previews and millisecond conversion offer a slightly bigger challenge.
 
-Six optional enhancements are left for contributors:
+The twelve contribution tasks are listed below. Check the linked GitHub issues for current availability:
 
 - [Count empty lines in Text Analyzer](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/01-empty-lines.md).
 - [Choose 2-space or 4-space JSON indentation](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/02-json-indentation.md).
@@ -41,6 +41,12 @@ Six optional enhancements are left for contributors:
 - [Preview the first few CSV data rows](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/04-csv-preview.md).
 - [Count unchanged lines in Text Comparison](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/05-unchanged-lines.md).
 - [Support Unix milliseconds in Timestamp Converter](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/06-milliseconds.md).
+- [Count characters excluding whitespace](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/07-non-whitespace-count.md).
+- [Report empty CSV column names](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/08-empty-csv-headers.md).
+- [Support semicolon and tab CSV delimiters](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/09-csv-delimiters.md).
+- [Add case-insensitive text comparison](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/10-ignore-case-diff.md).
+- [Show the UTC weekday](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/11-utc-weekday.md).
+- [Count URL query parameter entries](https://github.com/github-community-gitam/MCP-tools-lab/blob/main/docs/issues/12-query-count.md).
 
 All seven tools already work without these enhancements. Each issue brief includes
 examples, the exact function to edit, acceptance criteria, and a focused test command.
