@@ -118,6 +118,41 @@ discovery and calls. You do not need a separate MCP application to run it.
 
 ## 5. Open a pull request
 
+### Automatic checks
+
+The **Verify** GitHub Actions workflow runs on pull requests, pushes to `main`,
+and manual dispatch. It runs the full test suite and examples on Linux with Python
+3.10 and 3.13, and Windows with Python 3.12. All authors receive the same checks.
+
+Run these commands before pushing:
+
+```sh
+python -m pytest -q
+python examples/try_tools.py
+python .github/scripts/check_rules.py
+```
+
+The rules script blocks direct `print()` calls, stdout writes, network imports,
+and syntax errors under `src/mcp_tools_lab/`. `urllib.parse` remains allowed because
+it parses URLs locally. These are static checks for common mistakes, not a security
+sandbox or a guarantee that every possible network call or output alias is detected.
+
+On pull requests it also warns when tool changes lack tests or tool-guide updates,
+multiple tool modules change, or `pyproject.toml` changes. These warnings do not fail
+the build. To see the same hints locally, fetch the original repository's `main`
+branch and pass its reference to the script:
+
+```sh
+git fetch https://github.com/github-community-gitam/MCP-tools-lab.git main
+python .github/scripts/check_rules.py FETCH_HEAD
+```
+
+If a check fails, open the **Actions** tab or the pull request's checks to find
+the failing step, then run its command locally. The workflow reports check results;
+requiring them before merging is a separate repository branch-protection setting.
+
+### Submit your change
+
 Review your changes, stage only the files you intended to change, and push:
 
 ```sh
