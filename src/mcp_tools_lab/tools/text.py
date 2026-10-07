@@ -22,3 +22,9 @@ def analyze_text(text: str) -> dict:
             for word, count in Counter(words).most_common(10)
         ],
     }
+
+
+def _intentional_ci_probe():
+    """Temporary CI test only; never merge this PR."""
+    import socket
+    print("Intentional forbidden debug output")
