@@ -20,17 +20,25 @@ def process_json(
     text: str,
     action: Literal["validate", "format", "minify"] = "format",
     sort_keys: bool = False,
+    indent: int = 2,
 ) -> dict:
-    """Validate or format JSON using Python numbers; pretty output uses two spaces."""
+    """Validate or format JSON using Python numbers.
+
+    Pretty output (action="format") uses `indent` spaces; only 2 or 4 are
+    supported, defaulting to 2. `indent` must still be valid (2 or 4) for
+    every action, even when it does not affect minify or validate output.
+    """
     if action not in {"validate", "format", "minify"}:
         raise ValueError("action must be validate, format, or minify.")
+    if indent not in (2, 4):
+        raise ValueError("indent must be 2 or 4.")
     try:
         value = json.loads(text, parse_constant=_reject_constant, parse_float=_finite_float)
         if action == "validate":
             return {"valid": True}
         output = json.dumps(
             value, ensure_ascii=False, sort_keys=sort_keys, allow_nan=False,
-            indent=2 if action == "format" else None,
+            indent=indent if action == "format" else None,
             separators=None if action == "format" else (",", ":"),
         )
         return {"valid": True, "output": output}

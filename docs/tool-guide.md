@@ -16,9 +16,9 @@ with ties ordered by first appearance. Lines follow `str.splitlines()`:
 empty input has zero lines and a final newline does not add an extra line.
 Sentence counting is a simple split on `.`, `!`, and `?`, not language-aware analysis.
 
-## process_json(text, action="format", sort_keys=False)
+## process_json(text, action="format", sort_keys=False, indent=2)
 
-Actions are `validate`, `format`, and `minify`. Formatting uses two spaces.
+Actions are `validate`, `format`, and `minify`. Formatting uses two spaces by default; pass `indent=4` for four spaces (`indent` accepts only 2 or 4 and is validated for every action, even though it only affects formatted output).
 `process_json('{"a": 1}', action="minify")` returns
 `{"valid": True, "output": '{"a":1}'}`. Validation returns only `valid` on success.
 Malformed input returns `{"valid": False, "error": "..."}`.
