@@ -9,11 +9,16 @@ def analyze_text(text: str) -> dict:
 
     Words are letter/digit sequences (apostrophes within words are kept).
     Sentences are nonempty pieces separated by '.', '!', or '?'.
+    Characters exclude anything str.isspace() recognizes when counting
+    characters_without_whitespace.
     This is a simple heuristic, not linguistic analysis.
     """
     words = re.findall(r"[^\W_]+(?:['’][^\W_]+)*", text.lower())
     return {
         "characters": len(text),
+        "characters_without_whitespace": sum(
+            not character.isspace() for character in text
+        ),
         "words": len(words),
         "lines": len(text.splitlines()),
         "sentences": sum(bool(part.strip()) for part in re.split(r"[.!?]+", text)),

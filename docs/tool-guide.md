@@ -7,7 +7,10 @@ MCP imports. Examples below show Python arguments; MCP uses the same parameter n
 
 `analyze_text("Hi hi!")` returns `characters=6`, `words=2`, `lines=1`,
 `sentences=1`, and `frequent_words=[{"word": "hi", "count": 2}]`.
-Characters include whitespace. Words are Unicode letter/digit sequences with
+Characters include
+whitespace; `characters_without_whitespace` counts every character for which
+`str.isspace()` is false, so punctuation and digits still count. Words are Unicode letter/digit
+sequences with
 optional internal apostrophes; underscores separate words. Frequency is case-insensitive,
 with ties ordered by first appearance. Lines follow `str.splitlines()`:
 empty input has zero lines and a final newline does not add an extra line.
