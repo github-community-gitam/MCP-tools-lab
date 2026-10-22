@@ -43,10 +43,13 @@ Header cells that are empty or whitespace-only are reported by zero-based positi
 `empty_header_indices`; a blank name is a warning, not an invalid document, and the
 original names are kept in `columns` unchanged.
 
-## hash_text(text, algorithm="sha256")
+## hash_text(text, algorithm="sha256", uppercase=False)
 
 Algorithms: `sha256`, `sha512`, `blake2b`. Returns `algorithm` and lowercase
-hexadecimal `digest`. Text is encoded as UTF-8. Empty strings are supported.
+hexadecimal `digest`. Pass `uppercase=True` for an uppercase digest; the
+`algorithm` name is unchanged either way. For example,
+`hash_text("abc", uppercase=True)` starts with `BA7816BF`. Text is encoded as
+UTF-8. Empty strings are supported.
 These hashes compare content; this tool does not provide password storage.
 Unknown algorithms raise `ValueError`.
 
