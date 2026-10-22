@@ -52,8 +52,10 @@ Unknown algorithms raise `ValueError`.
 
 ## compare_text(before, after)
 
-Returns `added_lines`, `removed_lines`, and a unified `diff` string. A replacement
-counts as both removed and added lines. Identical inputs return an empty diff.
+Returns `added_lines`, `removed_lines`, `unchanged_lines`, and a unified `diff`
+string. A replacement counts as both removed and added lines, and `unchanged_lines`
+counts the matching lines in the same alignment, so `added_lines + unchanged_lines`
+equals the number of lines in `after`. Identical inputs return an empty diff.
 Comparison ignores CRLF versus LF and the presence of a final newline;
 other whitespace is significant. Empty input is supported.
 
