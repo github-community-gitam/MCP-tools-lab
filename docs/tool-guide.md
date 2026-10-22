@@ -61,8 +61,12 @@ other whitespace is significant. Empty input is supported.
 
 `value` is a string. `to_iso` accepts Unix **seconds**, including fractions and
 negative values. `to_unix` accepts an ISO 8601 date/time with `Z` or a UTC offset.
-Both return `unix_seconds` and `iso_utc`. For example,
-`convert_timestamp("1970-01-01T05:30:00+05:30", "to_unix")` returns zero seconds.
+Both return `unix_seconds`, `iso_utc`, and `weekday_utc`, the English weekday name
+of the converted UTC date. For example,
+`convert_timestamp("1970-01-01T05:30:00+05:30", "to_unix")` returns zero seconds,
+and `convert_timestamp("1970-01-02T00:30:00+01:00", "to_unix")` is Thursday in UTC
+even though the input's local date is Friday. A fixed Monday-to-Sunday list is used,
+so the name does not depend on the machine's locale.
 Timezone-less dates are rejected so results do not depend on the machine's timezone.
 Python datetime's year range (1–9999) and microsecond precision apply; finer fractional
 seconds may be rounded. Invalid, infinite, or out-of-range values raise `ValueError`.

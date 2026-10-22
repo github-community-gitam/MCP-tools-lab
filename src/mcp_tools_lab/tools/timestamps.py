@@ -4,11 +4,16 @@ import math
 from datetime import datetime, timedelta, timezone
 from typing import Literal
 
+# A fixed list keeps the name in English whatever the machine's locale is.
+WEEKDAYS = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
 
 def convert_timestamp(value: str, direction: Literal["to_iso", "to_unix"] = "to_iso") -> dict:
     """Convert Unix seconds to UTC ISO 8601, or an offset-aware ISO date to seconds.
 
     ISO input must include a time and timezone, such as 2026-01-01T12:00:00+05:30.
+
+    weekday_utc is the English weekday name of the converted UTC date.
     """
     epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)
     try:
@@ -27,4 +32,8 @@ def convert_timestamp(value: str, direction: Literal["to_iso", "to_unix"] = "to_
             raise ValueError("direction must be to_iso or to_unix.")
     except (ValueError, OverflowError) as error:
         raise ValueError(f"Cannot convert timestamp: {error}") from error
-    return {"unix_seconds": seconds, "iso_utc": date.isoformat().replace("+00:00", "Z")}
+    return {
+        "unix_seconds": seconds,
+        "iso_utc": date.isoformat().replace("+00:00", "Z"),
+        "weekday_utc": WEEKDAYS[date.weekday()],
+    }

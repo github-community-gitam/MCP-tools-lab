@@ -18,3 +18,23 @@ def test_fractional_and_negative_seconds():
 def test_invalid_input(value, direction):
     with pytest.raises(ValueError, match="Cannot convert"):
         convert_timestamp(value, direction)
+
+
+def test_weekday_utc_for_known_days():
+    assert convert_timestamp("0")["weekday_utc"] == "Thursday"
+    assert convert_timestamp("345600")["weekday_utc"] == "Monday"
+    assert convert_timestamp("1970-01-04T00:00:00Z", "to_unix")["weekday_utc"] == "Sunday"
+
+
+def test_weekday_utc_uses_utc_not_the_inputs_local_date():
+    result = convert_timestamp("1970-01-02T00:30:00+01:00", "to_unix")
+    assert result["iso_utc"] == "1970-01-01T23:30:00Z"
+    assert result["weekday_utc"] == "Thursday"
+
+
+def test_weekday_utc_for_negative_timestamp():
+    assert convert_timestamp("-0.5")["weekday_utc"] == "Wednesday"
+
+
+def test_weekday_utc_in_both_directions():
+    assert convert_timestamp("0")["weekday_utc"] == convert_timestamp("1970-01-01T00:00:00Z", "to_unix")["weekday_utc"]
